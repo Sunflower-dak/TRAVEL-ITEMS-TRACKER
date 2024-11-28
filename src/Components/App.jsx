@@ -1,19 +1,13 @@
 import BackgroundHeader from "./BackgroundHeader";
 import Footer from "./Footer";
-import Header from "./Header";
-import ItemList from "./ItemList";
-import SideEnd from "./SideEnd";
+import Main from "./Main";
 
 function App() {
   return (
     <>
       <BackgroundHeader />
 
-      <main>
-        <Header />
-        <ItemList />
-        <SideEnd />
-      </main>
+      <Main />
 
       <Footer />
     </>
