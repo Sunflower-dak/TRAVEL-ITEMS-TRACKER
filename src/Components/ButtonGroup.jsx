@@ -1,12 +1,16 @@
 import Buttons from "./Buttons";
+import { buttonsArray } from "../Library/buttonsArray";
 
 export default function ButtonGroup() {
   return (
     <section className="button-group">
-      <Buttons type="secondary">Mark all as complete</Buttons>
-      <Buttons type="secondary">Mark all as incomplete</Buttons>
-      <Buttons type="secondary">Reset to initial</Buttons>
-      <Buttons type="secondary">Remove all items</Buttons>
+      {buttonsArray.map((text) => {
+        return (
+          <Buttons type="secondary" key={text}>
+            {text}
+          </Buttons>
+        );
+      })}
     </section>
   );
 }
