@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { initialItems } from "../Library/objectForItem";
 
 export default function ItemList() {
+  const [items, setItems] = useState(initialItems);
   return (
     <ul>
-      {initialItems.map((item) => {
+      {items.map((item) => {
         return <Item item={item} key={item.id} />;
       })}
     </ul>
