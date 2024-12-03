@@ -1,10 +1,10 @@
 import ButtonGroup from "./ButtonGroup";
 import ItemForm from "./ItemForm";
 
-export default function SideEnd() {
+export default function SideEnd({ setItems }) {
   return (
     <div className="sidebar">
-      <ItemForm />
+      <ItemForm setItems={setItems} />
       <ButtonGroup />
     </div>
   );
