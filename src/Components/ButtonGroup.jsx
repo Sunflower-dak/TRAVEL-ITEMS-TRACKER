@@ -1,16 +1,25 @@
 import Buttons from "./Buttons";
-import { buttonsArray } from "../Library/buttonsArray";
 
-export default function ButtonGroup() {
+export default function ButtonGroup({
+  handleEventToRemoveAllItems,
+  handleEventToSetItemsToInitial,
+  handleEventToMarkAllComplete,
+  handleEventToMarkAllInComplete,
+}) {
   return (
     <section className="button-group">
-      {buttonsArray.map((text) => {
-        return (
-          <Buttons type="secondary" key={text}>
-            {text}
-          </Buttons>
-        );
-      })}
+      <Buttons buttonType="secondary" onClick={handleEventToMarkAllComplete}>
+        Mark all as complete
+      </Buttons>
+      <Buttons buttonType="secondary" onClick={handleEventToMarkAllInComplete}>
+        Mark all as incomplete
+      </Buttons>
+      <Buttons buttonType="secondary" onClick={handleEventToSetItemsToInitial}>
+        Reset to initial
+      </Buttons>
+      <Buttons buttonType="secondary" onClick={handleEventToRemoveAllItems}>
+        Remove all items
+      </Buttons>
     </section>
   );
 }

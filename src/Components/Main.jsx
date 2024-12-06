@@ -22,6 +22,24 @@ export default function Main() {
     setItems([]);
   };
 
+  const handleEventToSetItemsToInitial = () => {
+    setItems(initialItems);
+  };
+
+  const handleEventToMarkAllComplete = () => {
+    const newItems = items.map((item) => {
+      return { ...item, packed: true };
+    });
+    setItems(newItems);
+  };
+
+  const handleEventToMarkAllInComplete = () => {
+    const newItems = items.map((item) => {
+      return { ...item, packed: false };
+    });
+    setItems(newItems);
+  };
+
   return (
     <main>
       <Header />
@@ -29,6 +47,9 @@ export default function Main() {
       <SideEnd
         handleEventToAddItems={handleEventToAddItems}
         handleEventToRemoveAllItems={handleEventToRemoveAllItems}
+        handleEventToSetItemsToInitial={handleEventToSetItemsToInitial}
+        handleEventToMarkAllComplete={handleEventToMarkAllComplete}
+        handleEventToMarkAllInComplete={handleEventToMarkAllInComplete}
       />
     </main>
   );
