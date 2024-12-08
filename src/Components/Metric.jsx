@@ -1,7 +1,7 @@
-export default function Metric() {
+export default function Metric({ totalNumberOfItems, numberOfItemsPacked }) {
   return (
     <p className="counter">
-      <b>1</b>/ 3 items packed
+      <b>{numberOfItemsPacked}</b>/ {totalNumberOfItems} items packed
     </p>
   );
 }

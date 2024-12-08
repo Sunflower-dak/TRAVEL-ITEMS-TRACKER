@@ -9,12 +9,17 @@ export default function Main() {
 
   const handleEventToAddItems = (newItemText) => {
     const newItem = {
-      id: Date.now,
+      id: Date.now(),
       name: newItemText,
       packed: false,
     };
 
     const newItems = [...items, newItem];
+    setItems(newItems);
+  };
+
+  const handleEventToDeleteItem = (id) => {
+    const newItems = items.filter((item) => item.id !== id);
     setItems(newItems);
   };
 
@@ -40,10 +45,28 @@ export default function Main() {
     setItems(newItems);
   };
 
+  const handleEventToToggleItem = (id) => {
+    const newItems = items.map((item) => {
+      if (item.id === id) {
+        return { ...item, packed: !item.packed };
+      }
+
+      return item;
+    });
+    setItems(newItems);
+  };
+
   return (
     <main>
-      <Header />
-      <ItemList items={items} />
+      <Header
+        totalNumberOfItems={items.length}
+        numberOfItemsPacked={items.filter((item) => item.packed).length}
+      />
+      <ItemList
+        items={items}
+        handleEventToDeleteItem={handleEventToDeleteItem}
+        handleEventToToggleItem={handleEventToToggleItem}
+      />
       <SideEnd
         handleEventToAddItems={handleEventToAddItems}
         handleEventToRemoveAllItems={handleEventToRemoveAllItems}
