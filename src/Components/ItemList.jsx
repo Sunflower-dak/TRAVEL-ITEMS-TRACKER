@@ -1,15 +1,55 @@
+import Select from "react-select";
 import EmptyDivMsg from "./EmptyDivMsg";
+import { useState } from "react";
+
+const sortingOptions = [
+  {
+    value: "default",
+    label: "Sort by default",
+  },
+  {
+    value: "packed",
+    label: "Sort by packed",
+  },
+  {
+    value: "unpacked",
+    label: "Sort by unpacked",
+  },
+];
 
 export default function ItemList({
   items,
   handleEventToDeleteItem,
   handleEventToToggleItem,
 }) {
+  const [sortBy, setSortBy] = useState("default");
+
+  const newSortArray = [...items].sort((a, b) => {
+    if (sortBy === "packed") {
+      return b.packed - a.packed;
+    }
+
+    if (sortBy === "packed") {
+      return a.packed - b.packed;
+    }
+
+    return;
+  });
   return (
     <ul className="item-list">
       {items.length === 0 && <EmptyDivMsg />}
 
-      {items.map((item) => {
+      {items.length > 0 ? (
+        <section className="sorting">
+          <Select
+            options={sortingOptions}
+            defaultValue={sortingOptions[0]}
+            onChange={(option) => setSortBy(option.value)}
+          />
+        </section>
+      ) : null}
+
+      {newSortArray.map((item) => {
         return (
           <Item
             item={item}
