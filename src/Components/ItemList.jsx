@@ -1,6 +1,6 @@
 import Select from "react-select";
 import EmptyDivMsg from "./EmptyDivMsg";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const sortingOptions = [
   {
@@ -24,17 +24,22 @@ export default function ItemList({
 }) {
   const [sortBy, setSortBy] = useState("default");
 
-  const newSortArray = [...items].sort((a, b) => {
-    if (sortBy === "packed") {
-      return b.packed - a.packed;
-    }
+  const newSortArray = useMemo(
+    () =>
+      [...items].sort((a, b) => {
+        if (sortBy === "packed") {
+          return b.packed - a.packed;
+        }
 
-    if (sortBy === "packed") {
-      return a.packed - b.packed;
-    }
+        if (sortBy === "packed") {
+          return a.packed - b.packed;
+        }
 
-    return;
-  });
+        return;
+      }),
+    [items, sortBy]
+  );
+
   return (
     <ul className="item-list">
       {items.length === 0 && <EmptyDivMsg />}

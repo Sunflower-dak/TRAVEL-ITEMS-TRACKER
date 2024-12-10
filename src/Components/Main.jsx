@@ -1,11 +1,13 @@
 import Header from "./Header";
 import ItemList from "./ItemList";
 import SideEnd from "./SideEnd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { initialItems } from "../Library/objectForItem";
 
 export default function Main() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(
+    () => JSON.parse(localStorage.getItem("items")) || initialItems
+  );
 
   const handleEventToAddItems = (newItemText) => {
     const newItem = {
@@ -55,6 +57,10 @@ export default function Main() {
     });
     setItems(newItems);
   };
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
 
   return (
     <main>
