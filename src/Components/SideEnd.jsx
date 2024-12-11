@@ -1,22 +1,14 @@
+import { useItemContext } from "../Library/hooks";
 import ButtonGroup from "./ButtonGroup";
 import ItemForm from "./ItemForm";
 
-export default function SideEnd({
-  handleEventToAddItems,
-  handleEventToRemoveAllItems,
-  handleEventToSetItemsToInitial,
-  handleEventToMarkAllComplete,
-  handleEventToMarkAllInComplete,
-}) {
+export default function SideEnd() {
+  const { handleEventToAddItems } = useItemContext();
+
   return (
     <div className="sidebar">
       <ItemForm onAddItems={handleEventToAddItems} />
-      <ButtonGroup
-        handleEventToRemoveAllItems={handleEventToRemoveAllItems}
-        handleEventToSetItemsToInitial={handleEventToSetItemsToInitial}
-        handleEventToMarkAllComplete={handleEventToMarkAllComplete}
-        handleEventToMarkAllInComplete={handleEventToMarkAllInComplete}
-      />
+      <ButtonGroup />
     </div>
   );
 }
