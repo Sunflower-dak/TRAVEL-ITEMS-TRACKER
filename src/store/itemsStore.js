@@ -10,8 +10,8 @@ export const useItemStore = create((set) => ({
       packed: false,
     };
     set((state) => {
-      items = [...state.items, newItem];
-      return { items: newItem };
+      const newItems = [...state.items, newItem];
+      return { items: newItems };
     });
   },
   deleteItem: (id) => {
@@ -49,7 +49,8 @@ export const useItemStore = create((set) => ({
       const newItems = state.items.map((item) => {
         return { ...item, packed: false };
       });
-      return { item: newItems };
+
+      return { items: newItems };
     });
   },
   setItemsToInitial: () => {
