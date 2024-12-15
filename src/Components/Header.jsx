@@ -1,10 +1,9 @@
-import { useItemContext } from "../Library/hooks";
+import { useItemStore } from "../store/itemsStore";
 import Logo from "./Logo";
 import Metric from "./Metric";
 
 export default function Header() {
-  const { items } = useItemContext();
-
+  const items = useItemStore((state) => state.items);
   return (
     <header>
       <Logo />
